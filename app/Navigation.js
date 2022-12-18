@@ -6,6 +6,7 @@
 
 
 
+
 /**
  * Variables globales de navegación
  * En estas variables guardamos elementos DOM para trabajar con ellos
@@ -119,8 +120,17 @@ const swipeTo = (getTo = '#menu_page') => {
     /**
      * Navegar con swipes
      */
-    let sections = document.querySelectorAll('.swiper_item');
-    swiper.slideTo(sections);
+    switch (getTo) {
+        case '#settings_page':
+          swiper.slideTo(0)
+          break;
+        case '#menu_page':
+          swiper.slideTo(1)
+          break;
+        case '#leaderboard_page':
+          swiper.slideTo(2)
+          break;
+      }
 
     if (!swiper) {
         navigationErrHandler(`No has programado la funcionalidad de Swiper todavía!`);
@@ -180,7 +190,11 @@ const navigationTo = (getTo, animationType) => {
             }, 2000);
             break;
             
-
+            case 'game_out':
+                animation_ConfirmOut(getTo);
+                animation_PopupContinue(getTo);
+                animation_MainToMenu(getTo);
+                break;
             
         /**
          * ErrHandler
@@ -220,7 +234,19 @@ const popUpToggle = (getTo, animationType) => {
                 game.pauseOrResume();
             });
             break;
+        
+        case 'resume_modal':
+            animation_PopupContinue(getTo);
+            break;
 
+        case 'confirm_modal_in':
+            animation_ConfirmIn(getTo);
+            break;
+
+        case 'confirm_modal_out':
+            animation_ConfirmIn(getTo);
+            animation_PopupContinue(getTo);
+            break;
     }
 
     GAME_UI.state.navigationStage = getTo;

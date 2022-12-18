@@ -19,6 +19,10 @@
 
     <!-- swiperjs -->
     <link rel="stylesheet" href="./app/libs/swiper.css" />
+    
+    <!-- css -->
+    <link rel="stylesheet" href="./assets/style.css" />
+
 </head>
 
 <body>
@@ -37,8 +41,8 @@
             -->
         <section id="splash_page" class="full_window">
             <!-- Splash template -->
-            <h1>Splash page</h1>
-            <p>Me animo automáticamente, quieres ver cómo. en ./app/Animations.js</p>
+            <h1>Titans Game</h1>
+            <p>Lets get started with Animations.js!</p>
         </section>
 
 
@@ -75,6 +79,7 @@
                 </div>
             </div>
             <!-- Main page Juego!! -->
+            <div id="player">Drag me!</div>
             <div class="game">
                 Here comes the gameeee!!
             </div>
@@ -181,11 +186,29 @@
                 <header class="header">
                     <h2>Settings</h2>
                 </header>
-
+                
                 <div class="main">
                     Página de settings, anímame para ir al menú! <br>
                     Para ello usa Swiper!
                 </div>
+
+                <div class="settings_item">
+                    Volume
+                </div>
+
+                <div class="settings_item">
+                    Controls
+                </div>
+
+                <div class="settings_item">
+                    Difficulty
+                </div>
+
+                <div class="settings_item">
+                    Language
+                </div>
+
+
 
                 <footer class="footer">
                     <a href="#menu_page" navigation-type="swipe">Volver al menú (usa swiper)</a>
@@ -205,11 +228,8 @@
                 -->
             <section id="menu_page" class="swiper_item swiper-slide">
                 <header class="header">
-                    <h1>Menu principal!</h1>
+                    <h1>Main Menu</h1>
                 </header>
-                <div class="slider">
-                    Cómo molaría tener aquí alguna animación de los caracteres con SVG!
-                </div>
 
                 <footer class="footer">
                     <a href="#main_page" navigation-type="animation" animation-type="menu_to_game">Para ir al juego, anímame</a>
@@ -230,6 +250,22 @@
                         </ul>
                     </div>
                 </footer>
+            
+                <div class="slider">
+                    <svg class="fade-in" viewBox="0 0 600 400">
+                        <text class="txtTitle"
+                              text-anchor="middle"
+                              x="50%"
+                              y="50%"
+                              dy="50px"
+                              class="text"
+                              >
+                              Lets get started!
+                        </text>
+                      </svg>
+
+                </div>
+                
             </section>
 
 

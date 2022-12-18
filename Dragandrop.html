@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #draggable {
+      width: 100px;
+      height: 100px;
+      background-color: green;
+      color: white;
+      text-align: center;
+      line-height: 100px;
+    }
+
+    #dropzone {
+      width: 200px;
+      height: 200px;
+      border: 2px solid black;
+      text-align: center;
+      line-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="draggable">Drag me!</div>
+  <div id="dropzone">Drop here</div>
+
+  <script>
+    const draggable = document.getElementById('draggable');
+    const dropzone = document.getElementById('dropzone');
+
+    // Enable draggable element to be dragged
+    draggable.addEventListener('dragstart', function(event) {
+      event.dataTransfer.setData('text/plain', 'anything');
+    });
+
+    // Enable dropzone to receive dropped element
+    dropzone.addEventListener('dragover', function(event) {
+      event.preventDefault();
+    });
+    dropzone.addEventListener('drop', function(event) {
+      event.preventDefault();
+      dropzone.innerHTML = 'Dropped';
+    });
+  </script>
+</body>
+</html>

@@ -56,7 +56,7 @@ class Player extends Character {
                 this.game.shoot(this);
             }
         }
-    }
+    }  
 
 
     /**
@@ -86,7 +86,6 @@ class Player extends Character {
             }
         })
     }
-
 
 
     /**

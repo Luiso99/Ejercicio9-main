@@ -114,6 +114,41 @@ const animation_MenuToGame = (getTo) => {
 
 };
 
+const animation_MainToMenu = (getTo) => {
+    const from = document.querySelector('#main_page');
+    const to = document.querySelector('#swiper_page');
+  
+    anime.set(to, {
+      visibility: 'visible',
+      translateY: '100%',
+      opacity: 0
+    });
+    animation_layout = anime.timeline({
+      duration: 750,
+      easing: 'easeInOutSine'
+    });
+  
+    animation_layout
+      .add({
+        targets: [from],
+        translateY: '-100%',
+        opacity: 0
+      })
+      .add({
+        targets: [to],
+        translateY: '0%',
+        opacity: 1
+      }, '-=750');
+  
+    animation_layout.finished.then(() => {
+      anime.set(from, {
+        visibility: 'hidden'
+      });
+      game.ended = True;
+      document.querySelector('.game').innerHTML = '';
+    });
+  };
+
 /**
  * 
  * Ejemplo de un popup, como vemos, es lo mismo....
@@ -139,3 +174,92 @@ const animation_PopupPause = (getTo) => {
     });
 };
 
+const animation_PopupContinue = (getTo) => {
+    const popup = GAME_UI.app.querySelector('#modal_pause_window');
+  
+    animation_layout = anime.timeline({
+      duration: 300,
+      easing: 'easeOutQuad'
+    });
+  
+    animation_layout.add({
+      targets: [popup],
+      translateY: '-20%',
+      opacity: 0
+    });
+  
+    animation_layout.finished.then(() => {
+      game.pauseOrResume();
+      anime.set(popup, {
+        visibility: 'hidden'
+      })
+    });
+  };
+  
+const animation_ConfirmIn = (getTo) => {
+    const popup = GAME_UI.app.querySelector('#modal_confirm');
+  
+    anime.set(popup, {
+        translateY: '-20%',
+        opacity: 0,
+        visibility: 'visible'
+    });
+
+    animation_layout = anime.timeline({
+        duration: 300,
+        easing: 'easeOutQuad'
+    });
+
+    animation_layout.add({
+        targets: popup,
+        translateY: '0%',
+        opacity: 1
+    });
+    };
+
+const animation_ConfirmOut = (getTo) => {
+    const popup = GAME_UI.app.querySelector('#modal_confirm');
+
+    anime.set(popup, {
+        translateY: '0%', 
+        opacity: 1, 
+        visibility: 'visible'
+    });
+
+    animation_layout = anime.timeline({
+        duration: 300,
+        easing: 'easeOutQuad'
+    });
+
+    animation_layout.add({
+        targets: popup,
+        translateY: '20%',
+        opacity: 0
+    });
+}
+
+const player = document.getElementById('player');
+
+
+
+player.addEventListener('dragstart', (event) => {
+  // Almacenar la posición del mouse al iniciar el arrastre
+  event.dataTransfer.setData('mouseX', event.clientX);
+  event.dataTransfer.setData('mouseY', event.clientY);
+});
+
+player.addEventListener('drag', (event) => {
+  // Actualizar la posición del player en función de la posición del mouse durante el arrastre
+  const mouseX = event.clientX;
+  const mouseY = event.clientY;
+  player.style.left = `${mouseX}px`;
+  player.style.top = `${mouseY}px`;
+});
+
+player.addEventListener('dragend', (event) => {
+  // Almacenar la posición final del player al soltar el elemento
+  const mouseX = event.clientX;
+  const mouseY = event.clientY;
+  player.style.left = `${mouseX}px`;
+  player.style.top = `${mouseY}px`;
+});
