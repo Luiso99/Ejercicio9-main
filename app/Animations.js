@@ -263,3 +263,5 @@ player.addEventListener('dragend', (event) => {
   player.style.left = `${mouseX}px`;
   player.style.top = `${mouseY}px`;
 });
+
+print('Hola mundo');
